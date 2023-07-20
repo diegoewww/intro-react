@@ -11,43 +11,48 @@
       justify-content: center;
       text-align: center;
     }
+
     .box--large {
       width: 270px;
       height: 270px;
     }
+
     .box--medium {
       width: 180px;
       height: 180px;
     }
+
     .box--small {
       width: 90px;
       height: 90px;
     }
   </style>
   <script type="text/babel">
-    function Box({style, size, className = '', ...rest}) {
+
+    function Box({ className = '', style, size, ...rest }) {
+
       const sizeClassName = size ? `box--${size}` : ''
-      return (
-        <div
-          className={`box ${className} ${sizeClassName}`}
-          style={{fontStyle: 'italic', ...style}}
-          {...rest}
-        />
-      )
+
+      const props = {
+        className: `box ${className} ${sizeClassName}`,
+        style: { fontStyle: 'italic', ...style },
+        ...rest
+      }
+
+      return <div {...props} />
     }
 
     const element = (
       <div>
-        <Box size="small" style={{backgroundColor: 'lightblue'}}>
-          small lightblue box
+        <Box size="small" style={{ backgroundColor: 'lightblue' }}
+        > small lightblue box
         </Box>
-        <Box size="medium" style={{backgroundColor: 'pink'}}>
-          medium pink box
+        <Box size="medium" style={{ backgroundColor: 'pink' }}
+        > medium pink box
         </Box>
-        <Box size="large" style={{backgroundColor: 'orange'}}>
-          large orange box
+        <Box size="large" style={{ backgroundColor: 'orange' }}
+        > large orange box
         </Box>
-        <Box>sizeless box</Box>
       </div>
     )
 
